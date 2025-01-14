@@ -1,47 +1,47 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__wrapper">
+        <a href="#" class="header__logo-link">
+          <BookSVG />
+        </a>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+        <HeaderInput />
+      </div>
+
+      <div class="header__wrapper">
+        <h2 class="header__title">
+          Книги в каталоге <span class="number">1</span>
+        </h2>
+
+        <HeaderBtn />
+      </div>
     </div>
   </header>
 
-  <main>
-    <TheWelcome />
+  <main class="main">
+    <section class="section">
+      <div class="container section__container">
+        <BooksList />
+      </div>
+    </section>
   </main>
+
+  <FormAdd v-if="isModal === 1" />
+  <FormEdit v-if="isModal === 2" />
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-}
+<script setup>
+import { useStore } from './stores/store';
+import { storeToRefs } from 'pinia';
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+import BookSVG from './components/SVG/BookSVG.vue';
+import HeaderInput from './components/HeaderInput.vue';
+import HeaderBtn from './components/HeaderBtn.vue';
+import BooksList from './components/BooksList.vue';
+import FormAdd from './components/FormAdd.vue';
+import FormEdit from './components/FormEdit.vue';
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
+const store = useStore();
+const { isModal } = storeToRefs(store);
+</script>
