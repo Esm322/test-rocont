@@ -5,6 +5,7 @@ import createId from '@/helpers/idCreation';
 
 export const useStore = defineStore('store', () => {
   const booksData = ref(JSON.parse(localStorage.getItem('books')) || []);
+  const headerInput = ref('');
   const isModal = ref(0);
   const isChecked = ref(false);
   const book = ref({
@@ -70,6 +71,7 @@ export const useStore = defineStore('store', () => {
     isChecked,
     book,
     opennedBook,
+    headerInput,
     saveBooks,
     addBook,
     editBook,

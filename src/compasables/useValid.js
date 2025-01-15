@@ -7,7 +7,14 @@ export default function useValid() {
     }
   }
 
+  const validYear = (input) => {
+    const maxYear = new Date().getFullYear();
+
+    input.value = input.value > maxYear ? maxYear : input.value;
+  }
+
   return {
     outBlur,
+    validYear,
   }
 }

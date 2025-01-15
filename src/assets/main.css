@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "576.css";
 
 html {
   box-sizing: border-box;
@@ -292,4 +293,11 @@ body {
 
 .error {
   outline: 2px solid #900b09;
+}
+
+.not-found {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: #8e959f;
 }

@@ -23,7 +23,7 @@
         <span class="form__label-desc">
           Год
         </span>
-        <input type="text" class="form__input" placeholder="Год выпуска" v-model="book.bookYear">
+        <input type="number" @input="validYear(inputYear)" class="form__input" placeholder="Год выпуска" v-model="book.bookYear" ref="inputYear">
       </label>
       <label class="form__label">
         <span class="form__label-desc">
@@ -66,10 +66,11 @@ const { isChecked, book } = storeToRefs(store);
 
 const inputName = useTemplateRef('inputName');
 const inputAuthor = useTemplateRef('inputAuthor');
+const inputYear = useTemplateRef('inputYear');
 
 const { useChecked } = useCheck();
 const { useModal } = useModals();
-const { outBlur } = useValid();
+const { outBlur, validYear } = useValid();
 
 const addBook = () => {
   if (book.value.bookName.length > 0 && book.value.bookAuthor.length > 0) {
